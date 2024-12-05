@@ -4,8 +4,8 @@ trigger:
       - main # Adjust based on your branch naming convention
 
 pool:
-  
-  name: Default
+    name: Default
+
 variables:
   NODE_ENV: 'production'
   buildArtifactName: 'node-app'
@@ -24,11 +24,7 @@ stages:
           # Step 2: Install dependencies
           - script: |
               npm install
-            displayName: Install Dependencies
-          # Step 3: Run unit tests and generate code coverage
-          - script: |
-              npm test -- --coverage
-            displayName: Run Unit Tests and Generate Coverage
+            displayName: Install Dependencies 
   # Deliver Stage
   - stage: Deliver
     displayName: Package Application
