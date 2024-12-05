@@ -11,95 +11,35 @@ variables:
   buildArtifactName: 'node-app'
 
 stages:
-  # Build Stage
   - stage: Build
-    displayName: Build and Test
+    displayName: 'Build'
     jobs:
-      - job: BuildJob
-        displayName: Build and Unit Test Job
+      - job: 'BuildJob'
+        displayName: 'Build'
         steps:
-          # Step 1: Install Node.js
           - task: UseNode@1
             inputs:
               version: '16.x'
+              
 
-          # Step 2: Install dependencies
+  - stage: Install
+    displayName: 'Install'
+    jobs:
+      - job: 'BuildJob'
+        displayName: 'Build'
+        steps:
           - script: |
               npm install
             displayName: Install Dependencies
 
-          # Step 3: Compile the project (if applicable)
+           
+  - stage: RunBuild
+    displayName: 'Run build'
+    jobs:
+      - job: 'BuildJob'
+        displayName: 'Build'
+        steps:
           - script: |
               npm run build
             displayName: Compile Project
-
-          # Step 4: Run unit tests and generate code coverage
-          - script: |
-              npm test -- --coverage
-            displayName: Run Unit Tests and Generate Coverage
-
-  # Deliver Stage
-  - stage: Deliver
-    displayName: Package Application
-    dependsOn: Build
-    jobs:
-      - job: PackageJob
-        displayName: Package Application Job
-        steps:
-          - script: |
-              npm pack
-            displayName: Package Application
-
-          # Publish build artifact
-          - task: PublishBuildArtifacts@1
-            inputs:
-              pathtoPublish: '$(Build.SourcesDirectory)'
-              artifactName: '$(buildArtifactName)'
-
-  # Deploy to Dev Stage
-  - stage: DeployToDev
-    displayName: Deploy to Dev Environment
-    dependsOn: Deliver
-    jobs:
-      - job: DeployDevJob
-        displayName: Deploy to Dev Job
-        steps:
-          - script: |
-              echo "Deploying to Dev Environment..."
-            displayName: Mock Dev Deployment
-
-  # Deploy to QAT Stage
-  - stage: DeployToQAT
-    displayName: Deploy to QAT Environment
-    dependsOn: DeployToDev
-    jobs:
-      - job: DeployQATJob
-        displayName: Deploy to QAT Job
-        steps:
-          - script: |
-              echo "Deploying to QAT Environment..."
-            displayName: Mock QAT Deployment
-
-  # Deploy to Staging Stage
-  - stage: DeployToStaging
-    displayName: Deploy to Staging Environment
-    dependsOn: DeployToQAT
-    jobs:
-      - job: DeployStagingJob
-        displayName: Deploy to Staging Job
-        steps:
-          - script: |
-              echo "Deploying to Staging Environment..."
-            displayName: Mock Staging Deployment
-
-  # Deploy to Production Stage
-  - stage: DeployToProduction
-    displayName: Deploy to Production Environment
-    dependsOn: DeployToStaging
-    jobs:
-      - job: DeployProdJob
-        displayName: Deploy to Production Job
-        steps:
-          - script: |
-              echo "Deploying to Production Environment..."
-            displayName: Mock Production Deployment
+              
