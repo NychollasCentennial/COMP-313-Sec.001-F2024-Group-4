@@ -25,11 +25,7 @@ stages:
           - script: |
               npm install
             displayName: Install Dependencies
-          # Step 3: Compile the project (if applicable)
-          - script: |
-              npm run build
-            displayName: Compile Project
-          # Step 4: Run unit tests and generate code coverage
+          # Step 3: Run unit tests and generate code coverage
           - script: |
               npm test -- --coverage
             displayName: Run Unit Tests and Generate Coverage
