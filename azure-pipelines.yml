@@ -56,8 +56,7 @@ stages:
               pathtoPublish: '$(Build.SourcesDirectory)'
               artifactName: '$(buildArtifactName)'
 
-  # Deployment Stages
-  # Mock deployments if not applicable
+  # Deploy to Dev Stage
   - stage: DeployToDev
     displayName: Deploy to Dev Environment
     dependsOn: Deliver
@@ -69,6 +68,7 @@ stages:
               echo "Deploying to Dev Environment..."
             displayName: Mock Dev Deployment
 
+  # Deploy to QAT Stage
   - stage: DeployToQAT
     displayName: Deploy to QAT Environment
     dependsOn: DeployToDev
@@ -80,6 +80,7 @@ stages:
               echo "Deploying to QAT Environment..."
             displayName: Mock QAT Deployment
 
+  # Deploy to Staging Stage
   - stage: DeployToStaging
     displayName: Deploy to Staging Environment
     dependsOn: DeployToQAT
@@ -91,6 +92,7 @@ stages:
               echo "Deploying to Staging Environment..."
             displayName: Mock Staging Deployment
 
+  # Deploy to Production Stage
   - stage: DeployToProduction
     displayName: Deploy to Production Environment
     dependsOn: DeployToStaging
