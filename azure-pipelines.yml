@@ -10,36 +10,17 @@ variables:
   NODE_ENV: 'production'
   buildArtifactName: 'node-app'
 
-stages:
-  - stage: Build
-    displayName: 'Build'
-    jobs:
-      - job: 'BuildJob'
-        displayName: 'Build'
-        steps:
-          - task: UseNode@1
-            inputs:
-              version: '16.x'
-              
 
-  - stage: Install
-    displayName: 'Install'
-    jobs:
-      - job: 'BuildJob'
-        displayName: 'Build'
-        steps:
-          - script: |
-              npm install
-            displayName: Install Dependencies
+steps:
+  - task: NodeTaskRunnerInstaller@0
+    inputs: 
+      nodeVersion: '6'
 
-           
-  - stage: RunBuild
-    displayName: 'Run build'
-    jobs:
-      - job: 'BuildJob'
-        displayName: 'Build'
-        steps:
-          - script: |
-              npm run build
-            displayName: Compile Project
-              
+  - script: |
+      npm install
+    displayName: 'npm install'
+
+  - script: |
+      npm run build
+    displayName: 'npm build'
+ 
