@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+        <form id="registerPatientForm" action="/patients" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="Gender">Patient Name:</label>
+            <select id="Gender" name="Gender" required>
+                <option>Male</option>
+                <option>Female</option>
+            </select><br>
+            <label for="dateOfBirth">Date of Birth:</label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth">
+            <label for="medicalHistory">Medical History:</label>
+            <textarea id="medicalHistory" name="medicalHistory"></textarea>
+            <label for="vitalSigns">Vital Signs:</label>
+            <textarea id="vitalSigns" name="vitalSigns" ></textarea>
+            <label for="diagnosis">Diagnosis:</label>
+            <textarea id="diagnosis" name="diagnosis"></textarea>
+            <!-- <label for="bloodPressure">Blood Pressure:</label>
+            <textarea id="bloodPressure" name="bloodPressure"></textarea>
+            <label for="heartRate">Hear Rate:</label>
+            <textarea id="heartRate" name="heartRate"></textarea>
+            <label for="temperature">Temperature:</label>
+            <textarea id="temperature" name="temperature"></textarea>-->
+            <button type="submit">Register Patient</button> 
+        </form> 
+
+    <%- include('partials/footer') %>

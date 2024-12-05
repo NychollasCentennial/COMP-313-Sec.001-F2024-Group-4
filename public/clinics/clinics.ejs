@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+
+<link rel="stylesheet" href="../css/clinics.css">
+  <h1>Clinics</h1>
+
+  <!-- Filter Form -->
+  <form action="/clinics" method="post" class="filter-form">
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" value="<%= filter.location || '' %>">
+
+    <label for="specialty">Specialty:</label>
+    <select id="specialty" name="specialty">
+      <option value="">All</option>
+      <option value="Cardiology" <%=filter.specialty==="Cardiology" ? 'selected' : '' %>>Cardiology</option>
+      <option value="Pediatrics" <%=filter.specialty==="Pediatrics" ? 'selected' : '' %>>Pediatrics</option>
+      <option value="Dermatology" <%=filter.specialty==="Dermatology" ? 'selected' : '' %>>Dermatology</option>
+      <!-- Add more specialties as needed -->
+    </select>
+
+    <label for="minRating">Minimum Rating:</label>
+    <input type="number" step="0.1" id="minRating" name="minRating" min="1" max="5"
+      value="<%= filter.minRating || '' %>">
+
+    <button type="submit">Filter</button>
+  </form>
+
+  <!-- Clinic List -->
+  <% if (clinics.length > 0) { %>
+    <div class="clinic-cards">
+      <% clinics.forEach(clinic => { %>
+        <a href="/clinics/<%= clinic.id %>">
+        <div class="clinic-card">
+          <h2><%= clinic.name %></h2>
+          <p><strong>Location:</strong> <%= clinic.location.city %></p>
+          <p><strong>Specialties:</strong> <%= clinic.specialty.join(", ") %></p>
+          <p><strong>Rating:</strong> <%= clinic.rating %>/5</p>
+        </div>
+      </a>
+      <% }); %>
+    </div>
+  <% } else { %>
+  <p>No clinics found.</p>
+<% } %>
+
+<%- include('../partials/footer') %>

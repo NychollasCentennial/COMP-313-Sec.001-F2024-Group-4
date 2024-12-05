@@ -1,0 +1,29 @@
+<%- include('partials/header') %>
+<form id="loginForm" action="/login" method="POST">
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+    <label for="type">Login as:</label>
+    <select id="type" name="type" required>
+        <option>Patient</option>
+        <option>Doctor</option>
+        <option>Nurse</option>
+    </select>
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
+    <div>
+        <p>Forgot you password? <a href="/reset_password">Recover it here</a></p>
+        <p>Don't have an account? <a href="/register">Register here</a></p>
+    </div>
+</form>
+
+
+<%- include('partials/footer') %>

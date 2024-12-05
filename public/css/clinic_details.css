@@ -1,0 +1,23 @@
+  .clinics-container {
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space between the columns */
+    gap: 20px; /* Space between the columns */
+  }
+
+  .clinics-inputs {
+    flex: 1; /* Left column takes up remaining space */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+
+  .clinics-map {
+    flex: 1; /* Right column takes up remaining space */
+    padding: 20px;
+  }
+
+  #map {
+    height: 400px; /* Set the height of the map */
+    width: 100%;   /* Set the width of the map */
+  }

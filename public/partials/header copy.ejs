@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="../css/formstyles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    
+</head>
+<body>
+    
+    <div class="container">
+        <h1> <%= typeof title !== 'undefined' && title ? title : 'Hospital Management System' %></h1>
+        <nav>
+            <ul class="navbar">
+                <li class="home-icon">
+                    <a href="index">
+                        <img src="../img/homepage.ico" alt="Home Icon" class="icon-img">
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="doctor_portal" class="dropbtn">Doctor Portal</a>
+                    <div class="dropdown-content">
+                        <a href="schedule_appointment">Schedule Appointment</a>
+                        <a href="view_update_patient_info">View/Update Patient Info</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="patient_portal" class="dropbtn">Patient Portal</a>
+                    <div class="dropdown-content">
+                        <a href="/patients/access_health_records">Access Health Records</a>
+                        <a href="book_appointment">Book Appointment</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="nurse_portal">Nurse Portal</a>
+                </li>
+                <li>
+                    <a href="register_patient">Register Patient</a>
+                </li>
+                <li>
+                    <a href="login">Login</a>
+                </li>
+            </ul>
+        </nav>

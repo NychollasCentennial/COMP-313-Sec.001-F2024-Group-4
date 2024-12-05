@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Reviews and Ratings</title>
+    <link rel="stylesheet" href="formstyles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Doctor Reviews and Ratings</h1>
+        <nav>
+            <ul class="navbar">
+                <li class="home-icon">
+                    <a href="index.html">
+                        <img src="homepage.ico" alt="Home Icon" class="icon-img">
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="doctor_portal.html" class="dropbtn">Doctor Portal</a>
+                    <div class="dropdown-content">
+                        <a href="schedule_appointment.html">Schedule Appointment</a>
+                        <a href="view_update_patient_info.html">View/Update Patient Info</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="patient_portal.html" class="dropbtn">Patient Portal</a>
+                    <div class="dropdown-content">
+                        <a href="access_health_records.html">Access Health Records</a>
+                        <a href="book_appointment.html">Book Appointment</a>
+                    </div>
+                </li>
+                <li><a href="nurse_portal.html">Nurse Portal</a></li>
+                <li><a href="register_patient.html">Register Patient</a></li>
+            </ul>
+        </nav>
+
+        <!-- Form to Submit a New Review -->
+        <form id="review-form">
+            <label for="rating">Rating (1-5):</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+            
+            <label for="review">Your Review:</label>
+            <textarea id="review" name="review" required></textarea><br>
+            
+            <button type="submit">Submit Review</button>
+        </form>
+        
+        <!-- Section to Display Existing Reviews -->
+        <div id="reviews-section">
+            <h3>Patient Reviews</h3>
+            <div id="reviews-list">
+                <!-- Reviews will be dynamically loaded here by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Link to the JavaScript file to handle review functionality -->
+        <script src="public/js/review.js"></script>
+
+    </div>
+</body>
+</html>

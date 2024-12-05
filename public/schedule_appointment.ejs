@@ -1,0 +1,76 @@
+<%- include('partials/header') %>
+    <form id="appointmentForm">
+        <label for="doctor">Doctor:</label>
+        <select id="doctor" name="doctorId" required></select><br>
+        
+        <label for="patient">Patient:</label>
+        <select id="patient" name="patientId" required></select><br>
+        
+        <label for="date">Appointment Date:</label>
+        <input type="date" id="date" name="date" required><br>
+        
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required><br>
+        
+        <label for="reason">Reason:</label>
+        <textarea id="reason" name="reason" required></textarea><br>
+        
+        <button type="submit">Schedule Appointment</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('doctors')
+                .then(response => response.json())
+                .then(doctors => {
+                    const doctorSelect = document.getElementById('doctor');
+                    doctors.forEach(doctor => {
+                        const option = document.createElement('option');
+                        option.value = doctor._id;
+                        option.textContent = doctor.name;
+                        doctorSelect.appendChild(option);
+                    });
+                });
+
+            fetch('patients')
+                .then(response => response.json())
+                .then(patients => {
+                    const patientSelect = document.getElementById('patient');
+                    patients.forEach(patient => {
+                        const option = document.createElement('option');
+                        option.value = patient._id;
+                        option.textContent = patient.name;
+                        patientSelect.appendChild(option);
+                    });
+                });
+        });
+
+        document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = {
+                doctorId: document.getElementById('doctor').value,
+                patientId: document.getElementById('patient').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                reason: document.getElementById('reason').value
+            };
+            
+            fetch('appointments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Appointment scheduled successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+
+<%- include('partials/footer') %>

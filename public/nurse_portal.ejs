@@ -1,0 +1,101 @@
+<%- include('partials/header') %>
+        <div class="form-container"></div>
+        <h2>Patient Information</h2>
+        <form id="patientInfoForm">
+            <!-- <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" name="patientName" value="John Doe"><br> -->
+
+            <label for="patientName">Patient Name:</label>
+            <select id="patientName" name="patientName" required onchange="handlePatientSelection(this.value)"></select><br>
+            
+            <label for="age">Date of Birth</label>
+            <input type="text" id="dateOfBirth" name="dateOfBirth" disabled><br>
+            
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" name="gender" disabled><br>
+            
+            <label for="history">Medical History:</label>
+            <textarea id="history" name="history" rows="5">Patient's medical history...</textarea><br>
+            
+            <label for="diagnosis">Diagnosis:</label>
+            <textarea id="diagnosis" name="diagnosis" rows="5">Current diagnosis or notes...</textarea><br>
+            
+            <h2>Vital Signs</h2>
+            <label for="bloodPressure">Blood Pressure:</label>
+            <input type="number" id="bloodPressure" name="bloodPressure"><br>
+            
+            <label for="heartRate">Heart Rate:</label>
+            <input type="number" id="heartRate" name="heartRate"><br>
+            
+            <label for="temperature">Temperature:</label>
+            <input type="number" id="temperature" name="temperature"><br>
+            
+            <button type="submit">Update Information</button>
+        </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('patients')
+                .then(response => response.json())
+                .then(patients => {
+                    const patientSelect = document.getElementById('patientName');
+                    patients.forEach(patient => {
+                        const option = document.createElement('option');
+                        option.value = patient._id;
+                        option.textContent = patient.name;
+                        patientSelect.appendChild(option);
+                    });
+                });
+        });
+
+        function handlePatientSelection(patientId) {
+            fetch(`patients/${patientId}`)
+                .then(response => response.json())
+                .then(patient => {
+                    document.getElementById('heartRate').value = parseInt(patient.heartRate);
+                    document.getElementById('bloodPressure').value = parseInt(patient.bloodPressure);
+                    document.getElementById('temperature').value = parseInt(patient.temperature); 
+                    document.getElementById('dateOfBirth').value = patient.dateOfBirth ? new Date(patient.dateOfBirth).toISOString().split('T')[0] : ''; // Format to YYYY-MM-DD
+                    document.getElementById('gender').value = patient.Gender; 
+                    document.getElementById('history').value = patient.medicalHistory; 
+                    document.getElementById('diagnosis').value = patient.diagnosis;
+
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+
+        document.getElementById('patientInfoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const updatedData = {
+                // dateOfBirth: document.getElementById('dob').value,
+                medicalHistory: document.getElementById('history').value,
+                diagnosis: document.getElementById('diagnosis').value,
+                bloodPressure: document.getElementById('bloodPressure').value,
+                heartRate: document.getElementById('heartRate').value,
+                temperature: document.getElementById('temperature').value
+
+            };
+
+            let patientId = document.getElementById('patientName').value
+            fetch(`patients/${patientId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Patient information updated successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+
+<%- include('partials/footer') %>

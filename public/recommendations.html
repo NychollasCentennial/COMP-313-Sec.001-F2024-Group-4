@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enhanced Search and Recommendations</title>
+    <link rel="stylesheet" href="formstyles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Enhanced Search and Recommendations</h1>
+        <!-- Navbar for easy navigation between portals -->
+<nav>
+    <ul class="navbar">
+        <li class="home-icon">
+            <a href="index.html">
+                <img src="homepage.ico" alt="Home Icon" class="icon-img">
+            </a>
+        </li>
+        <li class="dropdown">
+            <a href="doctor_portal.html" class="dropbtn">Doctor Portal</a>
+            <div class="dropdown-content">
+                <a href="schedule_appointment.html">Schedule Appointment</a>
+                <a href="view_update_patient_info.html">View/Update Patient Info</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="patient_portal.html" class="dropbtn">Patient Portal</a>
+            <div class="dropdown-content">
+                <a href="access_health_records.html">Access Health Records</a>
+                <a href="book_appointment.html">Book Appointment</a>
+            </div>
+        </li>
+        <li><a href="nurse_portal.html">Nurse Portal</a></li>
+        <li><a href="register_patient.html">Register Patient</a></li>
+       
+    </ul>
+</nav>
+
+        
+        <!-- Search Section -->
+        <div id="search-section">
+            <h3>Find Clinics Near You</h3>
+            <input type="text" id="search-input" placeholder="Enter location or specialty">
+            <button onclick="handleSearch()">Search</button>
+        </div>
+
+        <!-- Clinic Recommendations Section -->
+        <div id="clinic-recommendations">
+            <h3>Recommended Clinics</h3>
+            <ul id="recommended-clinics-list">
+                <!-- Recommended clinics will be dynamically loaded here by JavaScript -->
+            </ul>
+        </div>
+
+        <!-- Link to the JavaScript file to handle recommendations functionality -->
+        <script src="public/js/recommendations.js"></script>
+    </div>
+</body>
+</html>

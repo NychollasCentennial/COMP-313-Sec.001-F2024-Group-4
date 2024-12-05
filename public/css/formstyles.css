@@ -1,0 +1,175 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #ddd;
+}
+.container {
+    max-width: calc(90%);
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #4CAF50;;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.form-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+h1, h2 {
+    text-align: center;
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+input[type="text"],input[type="number"], textarea, [type="time"], [type="date"], [type="password"], [type="email"] {
+    width: 97.5%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #ddd;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+select{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #ddd;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+button:hover {
+    background-color: #45a049;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    border-color: #ddd;
+}
+
+.navbar li {
+    position: relative;
+}
+
+.navbar li a, .dropdown .dropbtn {
+    display: inline-block;
+    color: #333;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    
+}
+
+.navbar li a:hover, .dropdown:hover .dropbtn {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-color: #4CAF50;
+}
+
+.home-icon {
+    position: absolute;
+}
+
+.icon-img {
+    width: 30px;
+    height: 30px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.dropdown {
+    display: inline-block;
+    position: absolute;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 140px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    z-index: 1;
+    margin-top: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dropdown:hover .dropdown-content, .dropdown-content:hover {
+    display: block;
+    opacity: 1;
+}
+
+/* Clinic Cards */
+.clinic-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.clinic-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.clinic-card:hover {
+    transform: translateY(-5px);
+}
+
+.clinic-name {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.clinic-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.clinic-card strong {
+    color: #000;
+}

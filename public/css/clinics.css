@@ -1,0 +1,33 @@
+/* Filter Form */
+.filter-form {
+    display: flex; /* Use flexbox for side-by-side layout */
+    gap: 15px; /* Space between elements */
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Center the form horizontally */
+    margin-bottom: 20px; /* Space below the form */
+}
+
+.filter-form label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.filter-form input,
+.filter-form select,
+.filter-form button {
+    padding: 8px 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+
+
+
+/* Optional: Adjust for smaller screens */
+@media (max-width: 768px) {
+    .filter-form {
+        flex-direction: column; /* Stack inputs vertically on small screens */
+        align-items: stretch;
+    }
+}

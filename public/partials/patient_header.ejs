@@ -1,0 +1,15 @@
+
+<li class="dropdown">
+    <a href="patient_portal" class="dropbtn">Patient Portal</a>
+    <div class="dropdown-content">
+        <a href="/patients/access_health_records">Access Health Records</a>
+        <a href="book_appointment">Book Appointment</a>
+    </div>
+</li>
+<li class="dropdown">
+    <a href="#" class="dropbtn"><%=user?.username||'User'%></a>
+    <div class="dropdown-content">
+        <a href="/patients/change_password">Change Password</a>
+        <a href="/logout">logout</a>
+    </div>
+</li>

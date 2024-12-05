@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+
+    <label for="name">Date of Birth:</label>
+    <input type="text" id="name" name="name" disabled  value="<%= patient?.name || '' %>"><br>
+
+    <label for="dateOfBirth">Date of Birth:</label>
+    <input type="date" id="dateOfBirth" name="dateOfBirth" disabled required value="<%= patient?.formattedDateOfBirth || '' %>"><br>
+    
+    <label for="bloodTest">Blood Test Results:</label>
+    <textarea id="bloodTest" name="bloodTest" disabled><%= patient?.bloodTest || 'No blood test results available' %></textarea><br>
+    
+    <label for="xray">X-ray Results:</label>
+    <textarea id="xray" name="xray" disabled><%= patient?.xray || 'No X-ray results available' %></textarea><br>
+    
+    <label for="mri">MRI Results:</label>
+    <textarea id="mri" name="mri" disabled><%= patient?.mri || 'No MRI results available' %></textarea><br>
+    
+    <label for="ultrasound">Ultrasound Results:</label>
+    <textarea id="ultrasound" name="ultrasound" disabled><%= patient?.ultrasound || 'No ultrasound results available' %></textarea><br>
+    <button onclick="location.href='patient_portal'">Return</button>
+
+
+ 
+
+<%- include('../partials/footer') %>

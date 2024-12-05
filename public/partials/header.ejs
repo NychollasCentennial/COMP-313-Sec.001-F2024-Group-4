@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="../css/formstyles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>
+            <%= typeof title !=='undefined' && title ? title : 'Hospital Management System' %>
+        </h1>
+        <nav>
+            <ul class="navbar">
+                <li class="home-icon">
+                    <a href="/index">
+                        <img src="../img/homepage.ico" alt="Home Icon" class="icon-img">
+                    </a>
+                </li>
+                <li>
+                    <a href="/clinics">Clinics</a>
+                </li>
+                <% if (typeof user =='undefined' ) { %>
+                    <li>
+                        <a href="/login">Login</a>
+                    </li>
+                <% } else { %>    
+                    <% if (user && user.role==='patient' ) { %>
+                        <%- include('./patient_header') %>
+                    <% } else if (user && user.role==='doctor' ) { %>
+                        <%- include('./patient_header') %>
+                    <% } else if (user && user.role==='nurse' ) { %>
+                        <%- include('./patient_header') %> 
+                    <% } %>
+                <% } %>
+            </ul>
+        </nav>

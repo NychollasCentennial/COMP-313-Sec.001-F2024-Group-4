@@ -1,0 +1,81 @@
+<%- include('../partials/header') %>
+
+<link rel="stylesheet" href="../css/clinic_details.css"> 
+
+<script src="./mapsUtil.js"></script>
+<h1><%= clinics?.name || '' %></h1>
+
+
+<div class="clinics-container">
+  <!-- Left Column for Input Fields -->
+  <div class="clinics-inputs">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" disabled value="<%= clinics?.name || '' %>"><br>
+
+    <!-- You can add more input fields here -->
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" disabled value="<%= clinics?.location.address || '' %>"><br>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" disabled value="<%= clinics?.location.city || '' %>"><br>
+
+    <label for="specialties">Specialties:</label>
+    <input type="text" id="specialties" name="specialties" disabled value="<%= clinics?.specialty.join(", ") || '' %>"><br>
+    
+    <label for="rating">Rating:</label>
+    <input type="text" id="rating" name="rating" disabled value="<%= clinics?.rating || '' %>"><br>
+  </div>
+
+  <!-- Right Column for the Map -->
+  <div class="clinics-map">
+
+    <button id="getRouteButton">Get Route</button>
+    <div id="map"></div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('address').addEventListener('change', function () {
+    const address = document.getElementById('address').value;
+    const city = document.getElementById('city').value;
+    geocodeAddress(address, city); // Call geocode function
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const address = document.getElementById('address',).value;
+    const city = document.getElementById('city').value;
+    if (address) {
+        geocodeAddress(address, city); // Call geocode function
+    }
+})
+// Event listener for the "Get Route" button
+document.getElementById('getRouteButton').addEventListener('click', getRoute);
+
+// Event listener to update the map based on address and city
+document.getElementById('address').addEventListener('change', function () {
+    const address = document.getElementById('address').value;
+    const city = document.getElementById('city').value;
+    geocodeAddress(address, city);
+});
+
+// Initial page load setup
+document.addEventListener('DOMContentLoaded', function () {
+    const address = document.getElementById('address').value;
+    const city = document.getElementById('city').value;
+    if (address) {
+        geocodeAddress(address, city);
+    }
+    getUserLocation(); // Try to center the map to the user's location
+});
+</script>
+
+<!-- Google Maps API Script -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeo0eghahURDZUmQ83ZO2i10pXlvXCIrw&callback=initMap" async defer></script>
+<style>
+  /* Ensure the map container has a height and width */
+  #map {
+      height: 400px;  /* Set the height of the map */
+      width: 100%;    /* Set the width of the map */
+  }
+</style>
+<%- include('../partials/footer') %>

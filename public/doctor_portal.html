@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Doctor Portal</h1>
+        <nav>
+            <ul class="navbar">
+                <li class="home-icon">
+                    <a href="index.html">
+                        <img src="homepage.ico" alt="Home Icon" class="icon-img">
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="doctor_portal.html" class="dropbtn">Doctor Portal</a>
+                    <div class="dropdown-content">
+                        <a href="schedule_appointment.html">Schedule Appointment</a>
+                        <a href="view_update_patient_info.html">View/Update Patient Info</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="patient_portal.html" class="dropbtn">Patient Portal</a>
+                    <div class="dropdown-content">
+                        <a href="access_health_records.html">Access Health Records</a>
+                        <a href="book_appointment.html">Book Appointment</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="nurse_portal.html">Nurse Portal</a>
+                </li>
+                <li>
+                    <a href="register_patient.html">Register Patient</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="link-container">
+            <div class="link" onclick="location.href='schedule_appointment.html'">
+                <h3>Schedule Appointment</h3>
+            </div>
+            <div class="link" onclick="location.href='view_update_patient_info.html'">
+                <h3>View/Update Patient Info</h3>
+            </div>
+            <div class="link" onclick="location.href='doctor_reviews.html'">
+                <h3>Doctor Reviews and Ratings</h3>
+            </div>
+            <div class="link" onclick="location.href='recommendations.html'">
+                <h3>Clinic Recommendations & Appointment Suggestions</h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
