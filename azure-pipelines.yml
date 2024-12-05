@@ -4,23 +4,90 @@ trigger:
       - main # Adjust based on your branch naming convention
 
 pool:
+  
   name: Default
-
 variables:
   NODE_ENV: 'production'
   buildArtifactName: 'node-app'
-
-
-steps:
-  - task: NodeTaskRunnerInstaller@0
-    inputs: 
-      nodeVersion: '6'
-
-  - script: |
-      npm install
-    displayName: 'npm install'
-
-  - script: |
-      npm run build
-    displayName: 'npm build'
- 
+stages:
+  # Build Stage
+  - stage: Build
+    displayName: Build and Test
+    jobs:
+      - job: BuildJob
+        displayName: Build and Unit Test Job
+        steps:
+          # Step 1: Install Node.js
+          - task: UseNode@1
+            inputs:
+              version: '16.x'
+          # Step 2: Install dependencies
+          - script: |
+              npm install
+            displayName: Install Dependencies
+          # Step 3: Compile the project (if applicable)
+          - script: |
+              npm run build
+            displayName: Compile Project
+          # Step 4: Run unit tests and generate code coverage
+          - script: |
+              npm test -- --coverage
+            displayName: Run Unit Tests and Generate Coverage
+  # Deliver Stage
+  - stage: Deliver
+    displayName: Package Application
+    dependsOn: Build
+    jobs:
+      - job: PackageJob
+        displayName: Package Application Job
+        steps:
+          - script: |
+              npm pack
+            displayName: Package Application
+          # Publish build artifact
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathtoPublish: '$(Build.SourcesDirectory)'
+              artifactName: '$(buildArtifactName)'
+  # Deployment Stages
+  # Mock deployments if not applicable
+  - stage: DeployToDev
+    displayName: Deploy to Dev Environment
+    dependsOn: Deliver
+    jobs:
+      - job: DeployDevJob
+        displayName: Deploy to Dev Job
+        steps:
+          - script: |
+              echo "Deploying to Dev Environment..."
+            displayName: Mock Dev Deployment
+  - stage: DeployToQAT
+    displayName: Deploy to QAT Environment
+    dependsOn: DeployToDev
+    jobs:
+      - job: DeployQATJob
+        displayName: Deploy to QAT Job
+        steps:
+          - script: |
+              echo "Deploying to QAT Environment..."
+            displayName: Mock QAT Deployment
+  - stage: DeployToStaging
+    displayName: Deploy to Staging Environment
+    dependsOn: DeployToQAT
+    jobs:
+      - job: DeployStagingJob
+        displayName: Deploy to Staging Job
+        steps:
+          - script: |
+              echo "Deploying to Staging Environment..."
+            displayName: Mock Staging Deployment
+  - stage: DeployToProduction
+    displayName: Deploy to Production Environment
+    dependsOn: DeployToStaging
+    jobs:
+      - job: DeployProdJob
+        displayName: Deploy to Production Job
+        steps:
+          - script: |
+              echo "Deploying to Production Environment..."
+            displayName: Mock Production Deployment
