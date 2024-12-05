@@ -4,7 +4,7 @@ trigger:
       - main # Adjust based on your branch naming convention
 
 pool:
-  vmImage: Default
+  name: Default
 
 variables:
   NODE_ENV: 'production'
